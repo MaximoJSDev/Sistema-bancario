@@ -1,0 +1,332 @@
+---
+import Sidebar from "../components/Sidebar.astro"
+import Layout from "../layouts/Layout.astro";
+
+// Datos simulados (Mock Data) para iterar en la tabla
+const transactions = [
+    {
+        entity: "Farmacia San Pablo",
+        category: "Salud y Farmacia",
+        date: "24/11/2025",
+        amount: "-$1,250.00",
+        status: "Completado",
+        type: "expense"
+    },
+    {
+        entity: "Rubén Antonio (Transferencia)",
+        category: "Transferencias",
+        date: "23/11/2025",
+        amount: "-$500.00",
+        status: "Completado",
+        type: "expense"
+    },
+    {
+        entity: "Nómina Quincenal",
+        category: "Ingresos",
+        date: "15/11/2025",
+        amount: "+$15,000.00",
+        status: "Completado",
+        type: "income"
+    },
+    {
+        entity: "Uber Eats",
+        category: "Alimentos",
+        date: "14/11/2025",
+        amount: "-$345.50",
+        status: "Completado",
+        type: "expense"
+    },
+    {
+        entity: "Netflix Suscripción",
+        category: "Entretenimiento",
+        date: "10/11/2025",
+        amount: "-$199.00",
+        status: "Pendiente",
+        type: "expense"
+    },
+    {
+        entity: "Walmart Express",
+        category: "Supermercado",
+        date: "09/11/2025",
+        amount: "-$890.20",
+        status: "Completado",
+        type: "expense"
+    }
+];
+---
+
+<Layout>
+    <div class="app-layout">
+        <Sidebar/>
+
+        <main class="container transactions-page">
+            
+            <section class="summary-card">
+                <div class="summary-content">
+                    <h1 class="page-title">Transacciones</h1>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Saldo total</span>
+                            <span class="stat-value">$32,450.00</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Ingresos (Nov)</span>
+                            <span class="stat-value text-green">$15,000.00</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Gastos (Nov)</span>
+                            <span class="stat-value text-red">$4,250.50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-image-container">
+                    <div class="card-illustration">
+                        <div class="card-chip"></div>
+                        <div class="card-circles"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="transactions-list-card">
+                <h2 class="section-title">Transacciones recientes</h2>
+
+                <div class="table-responsive">
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Cuenta / Detalle</th>
+                                <th>Categoría</th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {transactions.map((t) => (
+                                <tr>
+                                    <td class="fw-bold">{t.entity}</td>
+                                    <td class="text-muted">{t.category}</td>
+                                    <td class="text-muted">{t.date}</td>
+                                    <td class={t.type === 'income' ? 'text-green fw-bold' : 'fw-bold'}>
+                                        {t.amount}
+                                    </td>
+                                    <td>
+                                        <span class={`badge ${t.status === 'Completado' ? 'badge-success' : 'badge-warning'}`}>
+                                            {t.status}
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+<style>
+    :root {
+        --color-text-dark: #111827;
+        --color-text-gray: #9CA3AF;
+        --bg-card: #FFFFFF;
+        --font-family: 'Inter', sans-serif;
+    }
+
+    /* Reutilizamos estilos base del layout anterior */
+    .app-layout {
+        display: flex;
+        min-height: 100vh;
+        background-color: #fdfbff; /* Fondo suave */
+        font-family: var(--font-family);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* --- TARJETA DE RESUMEN (Arriba) --- */
+    .summary-card {
+        background-color: #EEF2FF; /* Un azul muy muy pálido, similar a la referencia */
+        background: linear-gradient(90deg, #EEF2FF 0%, #FFFFFF 100%);
+        border-radius: 30px;
+        padding: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--color-text-dark);
+        margin-bottom: 2rem;
+    }
+
+    .stats-grid {
+        display: flex;
+        gap: 4rem; /* Espacio amplio entre columnas como en la foto */
+    }
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #6B7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+        font-size: 2rem; /* Números grandes */
+        font-weight: 700;
+        color: var(--color-text-dark);
+    }
+
+    .text-green { color: #10B981; }
+    .text-red { color: #111827; } /* En la foto los gastos se ven negros, o podrías usar #EF4444 */
+
+    /* Decoración visual (Simulando la imagen de la derecha) */
+    .summary-image-container {
+        position: relative;
+        width: 300px;
+        height: 160px;
+    }
+
+    .card-illustration {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+        border-radius: 16px;
+        transform: rotate(-5deg) translateY(10px); /* Ligera inclinación */
+        box-shadow: -10px 10px 30px rgba(79, 70, 229, 0.3);
+        position: relative;
+    }
+    
+    .card-chip {
+        width: 40px;
+        height: 30px;
+        background: #FFD700;
+        border-radius: 6px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    /* --- TARJETA DE LISTA (Abajo) --- */
+    .transactions-list-card {
+        background-color: var(--bg-card);
+        border-radius: 30px;
+        padding: 2.5rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        min-height: 400px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: var(--color-text-dark);
+    }
+
+    /* --- TABLA --- */
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .transactions-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 1rem; /* Espacio entre filas si quisieras, o 0 para estándar */
+    }
+
+    .transactions-table th {
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-text-dark);
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #F3F4F6;
+    }
+
+    .transactions-table td {
+        padding: 1.5rem 0;
+        vertical-align: middle;
+        border-bottom: 1px solid #F9FAFB;
+        font-size: 1rem;
+    }
+
+    .transactions-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* Clases de utilidad para texto */
+    .fw-bold { font-weight: 600; color: var(--color-text-dark); }
+    .text-muted { color: #6B7280; }
+
+    /* Badges de estado */
+    .badge {
+        padding: 0.4rem 0.8rem;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .badge-success {
+        background-color: #D1FAE5;
+        color: #065F46;
+    }
+
+    .badge-warning {
+        background-color: #FEF3C7;
+        color: #92400E;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .stats-grid {
+            gap: 2rem;
+        }
+        .summary-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .summary-image-container {
+            align-self: center;
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .stats-grid {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        /* Hacer la tabla scrolleable en movil */
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+        }
+    }
+</style>
+</Layout>
