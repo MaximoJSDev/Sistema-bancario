@@ -1,15 +1,39 @@
+---
+// 1. Obtenemos la ruta actual (ej: "/dashboard" o "/account")
+const currentPath = Astro.url.pathname;
+
+// 2. Definimos los items del menú en una lista para no repetir código HTML
+const navItems = [
+    { name: 'Inicio', href: '/dashboard' },
+    { name: 'Cuenta', href: '/account' },
+    { name: 'Transacciones', href: '/transactions' },
+    { name: 'Depositar', href: '/deposit' },
+    { name: 'Mis Tarjetas', href: '/cards' },
+    { name: 'Pago de Servicios', href: '/services-payment' },
+];
+---
+
 <aside class="sidebar">
     <div class="sidebar__logo">
         <h2>AcaBank</h2>
     </div>
     <nav class="sidebar__nav">
         <ul class="sidebar__list">
-            <li><a href="#" class="sidebar__link sidebar__link--active">Inicio</a></li>
-            <li><a href="#" class="sidebar__link">Cuenta</a></li>
-            <li><a href="#" class="sidebar__link">Transacciones</a></li>
-            <li><a href="#" class="sidebar__link">Depositar</a></li>
-            <li><a href="#" class="sidebar__link">Mis Tarjetas</a></li>
-            <li><a href="#" class="sidebar__link">Pago de Servicios</a></li>
+            
+            {navItems.map((item) => (
+                <li>
+                    <a 
+                        href={item.href} 
+                        class:list={[
+                            "sidebar__link", 
+                            { "sidebar__link--active": currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) }
+                        ]}
+                    >
+                        {item.name}
+                    </a>
+                </li>
+            ))}
+
         </ul>
     </nav>
     <div class="sidebar__footer">
@@ -18,28 +42,20 @@
 </aside>
 
 <style>
+    /* ... Tus estilos CSS se mantienen exactamente igual ... */
     :root {
         --font-family: 'Inter', sans-serif;
         --bg-body: #F3F4F6;
         --color-text-dark: #111827;
         --color-text-gray: #6B7280;
         --color-primary: #7A7EFF;
-        
-        /* Colores específicos del Dashboard */
-        --card-bg: #1F2937;
-        --input-bg: #FFFFFF;
-        --input-border: #E5E7EB;
-        --sidebar-width: 280px; /* Ancho de la barra lateral */
+        --sidebar-width: 280px; 
     }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-
-        .sidebar {
+    /* Pega aquí el resto de tu CSS original */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    .sidebar {
         width: var(--sidebar-width);
         background-color: #FFFFFF;
         border-right: 1px solid rgba(0,0,0,0.05);
@@ -48,14 +64,15 @@
         flex-direction: column;
         position: sticky;
         top: 0;
-        height: 100vh; /* Ocupa toda la altura */
-        flex-shrink: 0; /* Evita que se encoja */
+        height: 100vh; 
+        flex-shrink: 0; 
     }
 
     .sidebar__logo {
         margin-bottom: 3rem;
         color: var(--color-primary);
         font-weight: 800;
+        font-size: 1.5rem; /* Asegura un tamaño visible */
     }
 
     .sidebar__list {
@@ -75,11 +92,12 @@
         transition: all 0.2s ease;
     }
 
-    .sidebar__link:hover {
+    .sidebar__link:not(.sidebar__link--active):hover {
         background-color: #F3F4F6;
         color: var(--color-text-dark);
     }
 
+    /* Esta es la clase que se activará automáticamente */
     .sidebar__link--active {
         background-color: var(--color-primary);
         color: #FFFFFF !important;
@@ -87,7 +105,7 @@
     }
 
     .sidebar__footer {
-        margin-top: auto; /* Empuja esto al final */
+        margin-top: auto; 
         border-top: 1px solid #F3F4F6;
         padding-top: 1rem;
     }
