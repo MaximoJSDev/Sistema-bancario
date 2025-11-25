@@ -1,0 +1,277 @@
+---
+import Sidebar from "../components/Sidebar.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <div class="app-layout">
+        
+        <Sidebar/>
+
+        <main class="container account-page">
+            
+            <section class="section-header">
+                <h1 class="page-title">Configuración de Cuenta</h1>
+            </section>
+
+            <div class="form-container">
+                <form class="account-form">
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" value="laura.m.gonzalez@gmail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-input" value="Laura María">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Apellido</label>
+                        <input type="text" class="form-input" value="González Pérez">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Número de teléfono</label>
+                        <input type="tel" class="form-input" value="55 8123 9090">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Ciudad</label>
+                        <input type="text" class="form-input" value="San Pedro Garza García">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Estado</label>
+                        <input type="text" class="form-input" value="Nuevo León">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Código postal</label>
+                        <input type="text" class="form-input" value="66220">
+                    </div>
+
+                    <div class="form-section-title full-width">
+                        <h3>Información Legal</h3>
+                        <p>Para modificar estos datos, contacta a soporte.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">RFC</label>
+                        <input type="text" class="form-input input-readonly" value="GOPL901025HDFXXX05" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">CURP</label>
+                        <input type="text" class="form-input input-readonly" value="GOPL901025HDFRRD09" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-input input-readonly" value="1990-10-25" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Ocupación</label>
+                        <select class="form-input">
+                            <option selected>Arquitecta</option>
+                            <option>Ingeniera</option>
+                            <option>Estudiante</option>
+                            <option>Empresaria</option>
+                        </select>
+                    </div>
+
+                    
+                    <div class="form-actions full-width">
+                        <button type="button" class="btn btn--secondary">Volver al inicio</button>
+                        <button type="submit" class="btn btn--primary">Guardar cambios</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </main>
+    </div> 
+
+<style>
+    :root {
+        --font-family: 'Inter', sans-serif;
+        --bg-body: #F3F4F6;
+        --color-text-dark: #111827;
+        --color-text-gray: #6B7280;
+        --color-primary: #7A7EFF;
+        --color-primary-hover: #6366f1;
+        --input-bg: #FFFFFF;
+        --input-border: #E5E7EB;
+    }
+
+    /* --- Layout General (Heredado) --- */
+    .app-layout {
+        display: flex;
+        min-height: 100vh;
+        background-color: #fdfbff;
+        background-image: 
+            radial-gradient(at 0% 100%, rgba(255, 255, 200, 0.5) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(230, 230, 255, 0.8) 0px, transparent 50%);
+        background-attachment: fixed;
+        font-family: var(--font-family);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px; /* Un poco más estrecho para formularios se ve mejor */
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        flex-grow: 1;
+    }
+
+    /* --- Estilos Específicos de Account Page --- */
+    
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--color-text-dark);
+        margin: 0;
+    }
+
+    /* --- Grid del Formulario --- */
+    .account-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 columnas por defecto */
+        column-gap: 2rem;
+        row-gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Clase utilitaria para ocupar todo el ancho (span 2) */
+    .full-width {
+        grid-column: span 2;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        color: var(--color-text-dark); /* Color oscuro según tu imagen */
+        margin-bottom: 0.5rem;
+        font-weight: 400;
+    }
+
+    .form-input {
+        padding: 1rem 1.25rem;
+        border: 1px solid var(--input-border);
+        background-color: var(--input-bg);
+        border-radius: 12px;
+        font-size: 1rem;
+        color: var(--color-text-dark);
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-input:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 4px rgba(122, 126, 255, 0.1);
+    }
+
+    /* --- Botones --- */
+    .form-actions {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end; /* Alineados a la derecha */
+        gap: 1rem;
+    }
+
+/* Títulos de secciones internas */
+.form-section-title {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.form-section-title h3 {
+    font-size: 1.1rem;
+    color: var(--color-text-dark);
+    margin: 0;
+}
+
+.form-section-title p {
+    font-size: 0.85rem;
+    color: var(--color-text-gray);
+    margin: 4px 0 0 0;
+}
+
+/* Estilo para inputs de solo lectura (parecen deshabilitados) */
+.input-readonly {
+    background-color: #F9FAFB; /* Un gris muy suave */
+    color: #6B7280; /* Texto grisáceo */
+    border-color: #F3F4F6;
+    cursor: not-allowed;
+}
+
+.input-readonly:focus {
+    /* Quitar el brillo azul si es solo lectura */
+    border-color: #F3F4F6;
+    box-shadow: none;
+}
+
+
+    .btn {
+        padding: 0.875rem 2rem;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: none;
+    }
+
+    .btn--primary {
+        background-color: var(--color-primary);
+        color: white;
+        box-shadow: 0 4px 6px rgba(122, 126, 255, 0.2);
+    }
+
+    .btn--primary:hover {
+        background-color: var(--color-primary-hover);
+        transform: translateY(-1px);
+    }
+
+    .btn--secondary {
+        background-color: #FFFFFF;
+        color: var(--color-text-gray);
+        border: 1px solid var(--input-border);
+    }
+
+    .btn--secondary:hover {
+        background-color: #F9FAFB;
+        color: var(--color-text-dark);
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+        .app-layout {
+            flex-direction: column;
+        }
+
+        .account-form {
+            grid-template-columns: 1fr; /* 1 sola columna en móvil */
+        }
+
+        .full-width {
+            grid-column: span 1;
+        }
+
+        .form-actions {
+            flex-direction: column-reverse; /* Botón guardar arriba en móvil */
+        }
+        
+        .btn {
+            width: 100%;
+        }
+    }
+</style>
+</Layout>
