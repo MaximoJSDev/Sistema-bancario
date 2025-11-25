@@ -1,0 +1,102 @@
+<aside class="sidebar">
+    <div class="sidebar__logo">
+        <h2>AcaBank</h2>
+    </div>
+    <nav class="sidebar__nav">
+        <ul class="sidebar__list">
+            <li><a href="#" class="sidebar__link sidebar__link--active">Inicio</a></li>
+            <li><a href="#" class="sidebar__link">Cuenta</a></li>
+            <li><a href="#" class="sidebar__link">Transacciones</a></li>
+            <li><a href="#" class="sidebar__link">Depositar</a></li>
+            <li><a href="#" class="sidebar__link">Mis Tarjetas</a></li>
+            <li><a href="#" class="sidebar__link">Pago de Servicios</a></li>
+        </ul>
+    </nav>
+    <div class="sidebar__footer">
+        <a href="#" class="sidebar__link sidebar__link--logout">Cerrar Sesión</a>
+    </div>
+</aside>
+
+<style>
+    :root {
+        --font-family: 'Inter', sans-serif;
+        --bg-body: #F3F4F6;
+        --color-text-dark: #111827;
+        --color-text-gray: #6B7280;
+        --color-primary: #7A7EFF;
+        
+        /* Colores específicos del Dashboard */
+        --card-bg: #1F2937;
+        --input-bg: #FFFFFF;
+        --input-border: #E5E7EB;
+        --sidebar-width: 280px; /* Ancho de la barra lateral */
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+        .sidebar {
+        width: var(--sidebar-width);
+        background-color: #FFFFFF;
+        border-right: 1px solid rgba(0,0,0,0.05);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        height: 100vh; /* Ocupa toda la altura */
+        flex-shrink: 0; /* Evita que se encoja */
+    }
+
+    .sidebar__logo {
+        margin-bottom: 3rem;
+        color: var(--color-primary);
+        font-weight: 800;
+    }
+
+    .sidebar__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .sidebar__link {
+        text-decoration: none;
+        display: block;
+        padding: 1rem 1.2rem;
+        border-radius: 12px;
+        color: var(--color-text-gray);
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    .sidebar__link:hover {
+        background-color: #F3F4F6;
+        color: var(--color-text-dark);
+    }
+
+    .sidebar__link--active {
+        background-color: var(--color-primary);
+        color: #FFFFFF !important;
+        box-shadow: 0 4px 10px rgba(122, 126, 255, 0.3);
+    }
+
+    .sidebar__footer {
+        margin-top: auto; /* Empuja esto al final */
+        border-top: 1px solid #F3F4F6;
+        padding-top: 1rem;
+    }
+
+    .sidebar__link--logout {
+        color: #EF4444;
+    }
+    .sidebar__link--logout:hover {
+        background-color: #FEF2F2;
+        color: #DC2626;
+    }
+</style>

@@ -1,0 +1,267 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+    <header class="header">
+        <div class="container header__container">
+            <a href="#" class="header__logo">CORSAIR</a>
+            
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="#" class="header__nav-link">Inicio</a></li>
+                    <li class="header__nav-item"><a href="#" class="header__nav-link">Dashboard</a></li>
+                    <li class="header__nav-item"><a href="#" class="header__nav-link">Sobre nosotros</a></li>
+                    <li class="header__nav-item"><a href="#" class="header__nav-link">Ayuda</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container">
+            
+            <div class="hero__text-content">
+                <div class="hero__text-conntent__ellipses">
+                    <img src="/public/Ellipse 3.png" alt="asd">
+                    <img src="/public/Ellipse 2.png" alt="asd">
+                    <img src="/public/Ellipse 1.png" alt="asd">
+                </div>
+                <h1 class="hero__title">
+                    Tu Banca Web: <br>
+                    Rápida, Intuitiva y <br>
+                    Sin Límites.
+                </h1>
+                <p class="hero__description">
+                    El sistema bancario digital que te da el control total. Realiza pagos, 
+                    transfiere dinero y gestiona tus finanzas en segundos, desde 
+                    cualquier dispositivo.
+                </p>
+                <a href="/login" class="button button--primary">Abrir mi Cuenta Ahora</a>
+            </div>
+
+            <div class="hero__image-content">
+                <img src="dashboard-mockup.png" alt="Demo del dashboard de la banca web" class="hero__image">
+                <img class="hero__image-content__blur" src="dashboard-mockup.png" alt="Demo del dashboard de la banca web" class="hero__image">
+            </div>
+
+        </section>
+    </main>
+	<style>
+.hero__image-content__blur {
+    position: absolute;
+    left: 0%;
+    top: -10%;
+    width: 700px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    filter: blur(50px);
+    z-index: -1;
+}
+
+.hero__text-conntent__ellipses {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+} 
+.hero__text-conntent__ellipses img {
+    position: absolute;
+}
+.hero__text-conntent__ellipses img:first-of-type {
+    top: -25%;
+    left: -20%;
+}
+.hero__text-conntent__ellipses img:nth-of-type(2) {
+    top: 5%;
+    right: -40%;
+}
+.hero__text-conntent__ellipses img:nth-of-type(3) {
+    top: 10%;
+    right: 11%;
+}
+		/* --- Variables Globales y Reseteo --- */
+:root {
+    --color-primario: #7A7EFF; /* Tono de lila/azul del botón */
+    --color-texto-titulo: #1A202C; /* Texto oscuro, casi negro */
+    --color-texto-cuerpo: #4A5568; /* Texto grisáceo para párrafos */
+    --color-fondo: #FFFFFF;
+    --fuente-principal: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-cuerpo);
+    line-height: 1.6;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Clase de Layout Global --- */
+.container {
+    width: 90%;
+    max-width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- BLOQUE: header --- */
+.header {
+    padding: 1.5rem 0;
+    background-color: var(--color-fondo);
+    border-bottom: 1px solid #E2E8F0; /* Borde sutil como en la imagen */
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    font-weight: 800;
+    font-size: 1.75rem;
+    color: var(--color-texto-titulo);
+}
+
+.header__nav-list {
+    display: flex;
+    gap: 2.5rem; /* Espacio entre links */
+}
+
+.header__nav-link {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-texto-cuerpo);
+    transition: color 0.3s ease;
+}
+
+.header__nav-link:hover {
+    color: var(--color-primario);
+}
+
+/* --- BLOQUE: hero --- */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    align-items: center;
+    gap: 3rem;
+    padding: 5rem 0; /* Espaciado vertical amplio */
+}
+
+.hero__text-content {
+    position: relative;
+    z-index: 22;
+    /* El grid se encarga del layout */
+}
+
+.hero__title {
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--color-texto-titulo);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.hero__description {
+    font-size: 32px;
+    color: var(--color-texto-cuerpo);
+    margin-bottom: 2.5rem;
+    max-width: 525px; /* Evita que el texto sea demasiado ancho */
+}
+
+.hero__image-content {
+    /* El grid se encarga del layout */
+    position: relative;
+}
+
+.hero__image {
+    width: 650px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* --- BLOQUE: button (Reutilizable) --- */
+.button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px; /* Totalmente redondeado */
+    font-weight: 700;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* --- MODIFICADOR: button--primary --- */
+.button--primary {
+    background-color: var(--color-primario);
+    color: #FFFFFF;
+    box-shadow: 0 4px 15px rgba(122, 126, 255, 0.4);
+}
+
+.button--primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(122, 126, 255, 0.6);
+}
+
+/* --- Diseño Responsivo (Mobile) --- */
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr; /* Apila las columnas */
+        text-align: center;
+        padding: 3rem 0;
+    }
+
+    .hero__text-content {
+        order: 2; /* El texto va debajo de la imagen en móvil */
+    }
+
+    .hero__image-content {
+        order: 1;
+    }
+
+    .hero__description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero__title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Oculta la navegación en móvil (requeriría JS para un menú hamburguesa) */
+    .header__nav {
+        display: none;
+    }
+    
+    .header__container {
+        justify-content: center; /* Centra el logo si no hay nav */
+    }
+}
+	</style>
+</Layout>

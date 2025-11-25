@@ -1,0 +1,224 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+
+    <main class="split-screen">
+        
+        <section class="split-screen__half split-screen__half--content">
+            <div class="login-container">
+                <h1 class="login-title">
+                    Tu seguridad,<br>
+                    nuestra prioridad.
+                </h1>
+                <p class="login-subtitle">
+                    Inicia sesión para continuar con <br> tus operaciones.
+                </p>
+
+                <form class="form">
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email</label>
+                        <input type="email" id="email" class="form__input" value="hidratado@outlook.com" placeholder="tucorreo@ejemplo.com">
+                    </div>
+
+                    <div class="form__group">
+                        <label for="password" class="form__label">Contraseña</label>
+                        <input type="password" id="password" class="form__input" value="danisex123" placeholder="••••••••">
+                    </div>
+
+                    <a href="/dashboard" type="submit" class="button button--primary button--full-width">
+                        Iniciar sesión
+                    </a>
+                </form>
+            </div>
+        </section>
+
+        <section class="split-screen__half split-screen__half--visual">
+            <div class="visual-content">
+                <img src="shield-3d-icon.png" alt="Seguridad 3D" class="visual-image">
+            </div>
+        </section>
+
+    </main>
+
+    <style>
+        /* --- Variables (Mismas que el proyecto anterior) --- */
+:root {
+    --color-primario: #7A7EFF;
+    --color-primario-hover: #6366f1;
+    --color-texto-titulo: #000000; /* Negro puro según la imagen */
+    --color-texto-cuerpo: #1A202C;
+    --color-input-bg: #d6d8e7; /* Gris azulado claro para los inputs */
+    --color-bg-izquierda: #F8F9FF; /* Tono muy sutil lila/blanco */
+    --color-bg-derecha: linear-gradient(135deg, #4A5568 0%, #2D3748 100%); /* Gradiente oscuro */
+    --fuente-principal: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fuente-principal);
+    background-color: var(--color-bg-izquierda);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* --- LAYOUT PRINCIPAL: split-screen --- */
+.split-screen {
+    display: flex;
+    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+    width: 100%;
+}
+
+.split-screen__half {
+    flex: 1; /* Ambos lados ocupan el 50% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+}
+
+/* Lado Izquierdo (Formulario) */
+.split-screen__half--content {
+    background-color: var(--color-bg-izquierda);
+    padding: 2rem 8%; /* Padding responsivo */
+}
+
+/* Lado Derecho (Visual) */
+.split-screen__half--visual {
+    background: var(--color-bg-derecha);
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Para efectos de brillo si se añaden */
+}
+
+/* --- CONTENIDOS --- */
+
+.login-container {
+    width: 100%;
+}
+
+.login-title {
+    font-size: 64px;
+    font-weight: 800; /* Extra bold */
+    color: var(--color-texto-titulo);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.login-subtitle {
+    font-size: 32px;
+    color: #4A5568;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+}
+
+/* --- FORMULARIO (BEM) --- */
+.form {
+    width: 100%;
+}
+
+.form__group {
+    margin-bottom: 2.5rem;
+}
+
+.form__label {
+    display: block;
+    font-size: 24px;
+    color: #2D3748;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form__input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background-color: var(--color-input-bg);
+    border: none; /* Sin borde visible como en la imagen */
+    border-radius: 8px;
+    font-size: 24px;
+    color: #2D3748;
+    font-family: inherit;
+    transition: outline 0.2s;
+}
+
+.form__input:focus {
+    outline: 2px solid var(--color-primario);
+    background-color: #fff;
+}
+
+/* --- BOTÓN (Estilo similar al anterior pero actualizado) --- */
+.button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 26px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.button--primary {
+    background-color: var(--color-primario);
+    color: #FFFFFF;
+    /* Sombra resplandeciente azul/lila debajo del botón */
+    box-shadow: 0 10px 25px rgba(122, 126, 255, 0.5); 
+}
+
+.button--primary:hover {
+    background-color: var(--color-primario-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(122, 126, 255, 0.7);
+}
+
+.button--full-width {
+    width: auto; /* En la imagen el botón no es full width, es tamaño contenido */
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+/* --- IMAGEN --- */
+.visual-image {
+    /* //max-width: 80%; */
+    height: auto;
+    /* Efecto flotante suave */
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .split-screen {
+        flex-direction: column;
+    }
+
+    .split-screen__half {
+        width: 100%;
+        flex: auto;
+    }
+
+    .split-screen__half--visual {
+        height: 300px; /* Altura fija para la imagen en móvil */
+        order: -1; /* Poner la imagen arriba en móvil (opcional) */
+    }
+    
+    .visual-image {
+        max-height: 200px;
+    }
+
+    .login-title {
+        font-size: 2.25rem;
+    }
+}
+    </style>
+</Layout>

@@ -1,0 +1,474 @@
+---
+import Sidebar from "../components/sidebar.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <div class="app-layout">
+        
+        <Sidebar/>
+
+        <main class="dashboard container">
+            
+            <section class="dashboard__column">
+                
+
+                <div class="section">
+                    <img class="credit-card__ellipsis" src="/public/Ellipse 2.png" alt="">
+                    <h2 class="section__title">Mis Tarjetas</h2>
+                    
+                    <div class="credit-card">
+                        <div class="credit-card__header">
+                            <span class="credit-card__name">Laura M. González</span>
+                            <div class="credit-card__chip"></div>
+                        </div>
+                        
+                        <div class="credit-card__number">
+                            4532 &nbsp; 1234 &nbsp; 5678 &nbsp; 9010
+                        </div>
+
+                        <div class="credit-card__footer">
+                            <div class="credit-card__info">
+                                <div class="credit-card__expiry">
+                                    <span class="credit-card__label">EXP</span>
+                                    <span class="credit-card__value">12/28</span>
+                                </div>
+                                <div class="credit-card__cvc">
+                                    <span class="credit-card__label">CVC</span>
+                                    <span class="credit-card__value">***</span>
+                                </div>
+                            </div>
+                            <div class="credit-card__balance">
+                                $19,200.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                <img class="transaction__ellipsis" src="/public/Ellipse 1.png" alt="">
+                    <h2 class="section__title">Transacciones Recientes</h2>
+                    <ul class="list-group">
+                        <li class="list-group__item">
+                            <span>Supermercado Walmart</span>
+                            <span class="list-group__amount text-negative">-$1,250.00</span>
+                        </li>
+                        <li class="list-group__item">
+                            <span>Suscripción Netflix</span>
+                            <span class="list-group__amount text-negative">-$199.00</span>
+                        </li>
+                        <li class="list-group__item">
+                            <span>Uber Eats</span>
+                            <span class="list-group__amount text-negative">-$350.50</span>
+                        </li>
+                        <li class="list-group__item">
+                            <span>Depósito Nómina</span>
+                            <span class="list-group__amount text-positive">+$15,000.00</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </section>
+
+
+            <section class="dashboard__column">
+                <img class="enviardinero__ellipsis" src="/public/Ellipse 3.png" alt="">
+                <div class="card-panel">
+                    <h2 class="section__title">Enviar dinero</h2>
+                    
+                    <form class="transfer-form">
+                        <div class="transfer-form__group">
+                            <label class="transfer-form__label">Número de tarjeta o CLABE</label>
+                            <input type="text" class="transfer-form__input" placeholder="0000 0000 0000 0000">
+                        </div>
+                        
+                        <div class="transfer-form__group">
+                            <label class="transfer-form__label">Monto a transferir</label>
+                            <div class="input-wrapper">
+                                <input type="number" class="transfer-form__input" placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn-action">Continuar</button>
+                    </form>
+                </div>
+
+                <div class="section">
+                    <h2 class="section__title">Pago de Servicios</h2>
+                    <ul class="list-group">
+                        <li class="list-group__item list-group__item--clickable">
+                            <span>CFE Electricidad</span>
+                            <span class="list-group__icon">⚡</span>
+                        </li>
+                        <li class="list-group__item list-group__item--clickable">
+                            <span>Internet Totalplay</span>
+                            <span class="list-group__icon">🌐</span>
+                        </li>
+                        <li class="list-group__item list-group__item--clickable">
+                            <span>Agua y Drenaje</span>
+                            <span class="list-group__icon">💧</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </section>
+
+        </main>
+    </div> 
+<style>
+    :root {
+        --font-family: 'Inter', sans-serif;
+        --bg-body: #F3F4F6;
+        --color-text-dark: #111827;
+        --color-text-gray: #6B7280;
+        --color-primary: #7A7EFF;
+        
+        /* Colores específicos del Dashboard */
+        --card-bg: #1F2937;
+        --input-bg: #FFFFFF;
+        --input-border: #E5E7EB;
+        --sidebar-width: 280px; /* Ancho de la barra lateral */
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: var(--font-family);
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        
+        /* Fondo con Mesh Gradient */
+        background-color: #fdfbff;
+        background-image: 
+            radial-gradient(at 0% 100%, rgba(255, 255, 200, 0.5) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(230, 230, 255, 0.8) 0px, transparent 50%);
+        background-attachment: fixed;
+        /* Eliminado el display flex del body para permitir layout lateral */
+    }
+
+    /* --- NUEVO LAYOUT APP (Sidebar + Main) --- */
+    .app-layout {
+        display: flex;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    /* --- ESTILOS SIDEBAR --- */
+    .sidebar {
+        width: var(--sidebar-width);
+        background-color: #FFFFFF;
+        border-right: 1px solid rgba(0,0,0,0.05);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        height: 100vh; /* Ocupa toda la altura */
+        flex-shrink: 0; /* Evita que se encoja */
+    }
+
+    .sidebar__logo {
+        margin-bottom: 3rem;
+        color: var(--color-primary);
+        font-weight: 800;
+    }
+
+    .sidebar__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .sidebar__link {
+        text-decoration: none;
+        display: block;
+        padding: 1rem 1.2rem;
+        border-radius: 12px;
+        color: var(--color-text-gray);
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    .sidebar__link:hover {
+        background-color: #F3F4F6;
+        color: var(--color-text-dark);
+    }
+
+    .sidebar__link--active {
+        background-color: var(--color-primary);
+        color: #FFFFFF !important;
+        box-shadow: 0 4px 10px rgba(122, 126, 255, 0.3);
+    }
+
+    .sidebar__footer {
+        margin-top: auto; /* Empuja esto al final */
+        border-top: 1px solid #F3F4F6;
+        padding-top: 1rem;
+    }
+
+    .sidebar__link--logout {
+        color: #EF4444;
+    }
+    .sidebar__link--logout:hover {
+        background-color: #FEF2F2;
+        color: #DC2626;
+    }
+
+
+    /* --- AJUSTE CONTENIDO PRINCIPAL --- */
+    .container {
+        width: 100%;
+        /* Restamos un poco para márgenes internos */
+        max-width: 1200px; 
+        margin: 2rem auto;
+        padding: 0 2rem; /* Padding lateral para que no pegue con bordes */
+        flex-grow: 1; /* Ocupa el resto del espacio */
+    }
+
+    /* --- TUS ESTILOS ORIGINALES (Mantenidos) --- */
+    .dashboard {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+    .dashboard__column {
+        position: relative;
+    }
+
+    .section {
+        position: relative;
+        margin-bottom: 2.6rem;
+    }
+
+    .section__title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--color-text-dark);
+        margin-bottom: 1rem;
+    }
+
+    /* --- Tarjeta de Crédito --- */
+    .credit-card {
+        background-color: #1a1a1a;
+        color: #fff;
+        border-radius: 24px;
+        padding: 2.4rem 2rem;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 200px;
+        position: relative; /* Asegura contexto para z-index */
+        overflow: hidden; /* Para que la elipsis no salga de la card si se quiere */
+    }
+    
+    /* Ajuste de tus imágenes decorativas */
+    .credit-card__ellipsis {
+        position: absolute;
+        width: 700px;
+        top: -70%;
+        left: -30%;
+        z-index: 0; /* Corregido para que no tape el texto si está fuera */
+        pointer-events: none;
+    }
+
+    .transaction__ellipsis {
+        position: absolute;
+        bottom: -70%;
+        left: -20%;
+        width: 520px;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .enviardinero__ellipsis {
+        width: 520px;
+        position: absolute;
+        right: -30%;
+        top: -30%;
+        z-index: -1;
+    }
+
+
+
+
+
+    .credit-card__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+        position: relative; z-index: 1;
+    }
+
+    .credit-card__name {
+        font-weight: 600;
+        font-size: 32px;
+        letter-spacing: 0.5px;
+    }
+
+    .credit-card__number {
+        font-size: 24px;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        position: relative; z-index: 1;
+    }
+
+    .credit-card__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: relative; z-index: 1;
+    }
+
+    .credit-card__info {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .credit-card__label {
+        display: block;
+        font-size: 18px;
+        text-transform: uppercase;
+        opacity: 0.6;
+        margin-bottom: 4px;
+    }
+
+    .credit-card__value {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .credit-card__balance {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    /* --- Listas --- */
+    .list-group {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .list-group__item {
+        background-color: #FFFFFF;
+        padding: 1.5rem 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+        font-size: 18px;
+        color: var(--color-text-dark);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .list-group__item--clickable {
+        cursor: pointer;
+    }
+
+    .list-group__item--clickable:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+    }
+
+    .text-negative { color: #EF4444; font-weight: 600; }
+    .text-positive { color: #10B981; font-weight: 600; }
+
+    /* --- Panel Enviar Dinero --- */
+    .card-panel {
+        background-color: #ffffff7a;
+        padding: 2rem;
+        border-radius: 30px;
+        box-shadow: 0 35px 34px rgb(0 103 191 / 10%);
+        margin-bottom: 3rem;
+    }
+
+    .transfer-form__group {
+        margin-bottom: 1.5rem;
+    }
+
+    .transfer-form__label {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--color-text-gray);
+        margin-bottom: 0.5rem;
+    }
+
+    .transfer-form__input {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid var(--input-border);
+        border-radius: 12px;
+        font-size: 1rem;
+        font-family: inherit;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .transfer-form__input:focus {
+        border-color: var(--color-primary);
+    }
+
+    .btn-action {
+        background-color: var(--color-primary);
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
+    .btn-action:hover {
+        opacity: 0.9;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1100px) {
+        .dashboard {
+            grid-template-columns: 1fr; /* Una columna si la pantalla se achica */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .app-layout {
+            flex-direction: column; /* Sidebar arriba en móvil */
+        }
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            padding: 1rem;
+        }
+        .sidebar__list {
+            flex-direction: row;
+            overflow-x: auto; /* Scroll horizontal para menú móvil */
+            padding-bottom: 10px;
+        }
+        .sidebar__link {
+            white-space: nowrap;
+        }
+        .sidebar__logo, .sidebar__footer {
+            display: none; /* Ocultar partes no esenciales en móvil */
+        }
+    }
+    </style>
+</Layout>
